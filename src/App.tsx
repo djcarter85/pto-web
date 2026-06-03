@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
-import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,7 +22,7 @@ function App() {
         </div>
         <button
           type="button"
-          className="counter"
+          className="counter p-4 bg-blue-500 hover:bg-blue-600"
           onClick={() => setCount((count) => count + 1)}
         >
           Count is {count}
