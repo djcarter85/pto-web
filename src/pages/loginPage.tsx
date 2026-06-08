@@ -34,10 +34,15 @@ export const LoginPage = () => {
       <div className="w-full max-w-md rounded-4xl border border-slate-800 bg-slate-900/90 p-10 shadow-2xl shadow-slate-950/30">
         <div className="space-y-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-sky-300/80">PTO Login</p>
-            <h1 className="mt-3 text-4xl font-semibold text-white">Welcome back</h1>
+            <p className="text-sm tracking-[0.28em] text-sky-300/80 uppercase">
+              PTO Login
+            </p>
+            <h1 className="mt-3 text-4xl font-semibold text-white">
+              Welcome back
+            </h1>
             <p className="mt-3 text-slate-400">
-              Sign in to access your predictions, leaderboard, and match insights.
+              Sign in to access your predictions, leaderboard, and match
+              insights.
             </p>
           </div>
           <button

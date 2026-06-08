@@ -8,10 +8,15 @@ export const LeaderboardPage = () => {
       <div className="rounded-4xl border border-slate-800 bg-slate-950/80 p-8 shadow-2xl shadow-slate-950/20">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-sky-300/80">Leaderboard</p>
-            <h1 className="mt-2 text-4xl font-semibold text-white">Club standings</h1>
+            <p className="text-sm tracking-[0.28em] text-sky-300/80 uppercase">
+              Leaderboard
+            </p>
+            <h1 className="mt-2 text-4xl font-semibold text-white">
+              Club standings
+            </h1>
             <p className="mt-2 max-w-2xl text-slate-400">
-              View the most accurate predictors, total points, and average performance for each member.
+              View the most accurate predictors, total points, and average
+              performance for each member.
             </p>
           </div>
           <div className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 ring-1 ring-emerald-500/20">
@@ -53,12 +58,23 @@ export const LeaderboardPage = () => {
             </thead>
             <tbody className="divide-y divide-slate-800 bg-slate-950">
               {leaderboard.map((item) => (
-                <tr key={item.player.id} className="transition hover:bg-slate-900/80">
+                <tr
+                  key={item.player.id}
+                  className="transition hover:bg-slate-900/80"
+                >
                   <td className="px-6 py-4 text-sky-200">{item.rank}</td>
-                  <td className="px-6 py-4 text-slate-100">{item.player.name}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.matchesPredicted}</td>
-                  <td className="px-6 py-4 text-emerald-300">{item.totalPoints}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.pointsPerMatch}</td>
+                  <td className="px-6 py-4 text-slate-100">
+                    {item.player.name}
+                  </td>
+                  <td className="px-6 py-4 text-slate-300">
+                    {item.matchesPredicted}
+                  </td>
+                  <td className="px-6 py-4 text-emerald-300">
+                    {item.totalPoints}
+                  </td>
+                  <td className="px-6 py-4 text-slate-300">
+                    {item.pointsPerMatch}
+                  </td>
                 </tr>
               ))}
             </tbody>
