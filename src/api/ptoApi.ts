@@ -1,18 +1,39 @@
-export type LeaderboardPlayer = {
-  id: string;
-  name: string;
-};
+import { z } from "zod";
 
-export type LeaderboardEntry = {
-  rank: number;
-  player: LeaderboardPlayer;
-  matchesPredicted: number;
-  totalPoints: number;
-  pointsPerMatch: number;
-};
+const LeaderboardPlayerSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
 
-export type LeaderboardResponse = {
-  leaderboard: LeaderboardEntry[];
+const LeaderboardEntrySchema = z.object({
+  rank: z.number(),
+  player: LeaderboardPlayerSchema,
+  matchesPredicted: z.number(),
+  totalPoints: z.number(),
+  pointsPerMatch: z.number(),
+});
+
+const LeaderboardResponseSchema = z.object({
+  leaderboard: z.array(LeaderboardEntrySchema),
+});
+
+export type LeaderboardPlayer = z.infer<typeof LeaderboardPlayerSchema>;
+
+export type LeaderboardEntry = z.infer<typeof LeaderboardEntrySchema>;
+
+export type LeaderboardResponse = z.infer<typeof LeaderboardResponseSchema>;
+
+const parseResponse = async <T>(res: Response, schema: z.ZodType<T>) => {
+  const json = await res.json();
+  const result = schema.safeParse(json);
+
+  if (!result.success) {
+    throw new Error(
+      `Leaderboard response validation failed: ${result.error.message}`,
+    );
+  }
+
+  return result.data;
 };
 
 export const getLeaderboard = async (idToken: string) => {
@@ -35,6 +56,5 @@ export const getLeaderboard = async (idToken: string) => {
     );
   }
 
-  const data = (await res.json()) as LeaderboardResponse;
-  return data;
+  return parseResponse(res, LeaderboardResponseSchema);
 };
