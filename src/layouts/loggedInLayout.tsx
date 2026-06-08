@@ -22,8 +22,6 @@ export const LoggedInLayout = () => {
 
   return (
     <div>
-      <h1>Logged In Layout</h1>
-      <p>This is the layout for logged in users.</p>
       <Nav user={auth.user?.profile.email} />
       <Outlet />
     </div>
