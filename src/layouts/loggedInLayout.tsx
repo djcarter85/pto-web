@@ -1,5 +1,6 @@
 import { useAuth } from "react-oidc-context";
 import { Outlet, useNavigate } from "react-router";
+import { Main } from "../components/main";
 
 export const LoggedInLayout = () => {
   const auth = useAuth();
@@ -11,8 +12,8 @@ export const LoggedInLayout = () => {
   }
 
   return (
-    <main className="mx-auto max-w-md">
+    <Main>
       <Outlet />
-    </main>
+    </Main>
   );
 };
