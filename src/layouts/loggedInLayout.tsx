@@ -11,8 +11,8 @@ export const LoggedInLayout = () => {
   }
 
   return (
-    <div>
+    <main>
       <Outlet />
-    </div>
+    </main>
   );
 };
