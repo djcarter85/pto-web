@@ -17,11 +17,11 @@ export const LeaderboardPage = () => {
         <table>
           <thead>
             <tr>
-              <th>Rank</th>
+              <th>#</th>
               <th>Player</th>
-              <th>Matches predicted</th>
-              <th>Points</th>
-              <th>Average</th>
+              <th>Pred</th>
+              <th>Pts</th>
+              <th>Avg</th>
             </tr>
           </thead>
           <tbody>
