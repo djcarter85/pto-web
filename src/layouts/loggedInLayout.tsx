@@ -11,7 +11,7 @@ export const LoggedInLayout = () => {
   }
 
   return (
-    <main>
+    <main className="mx-auto max-w-md">
       <Outlet />
     </main>
   );

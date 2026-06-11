@@ -4,8 +4,7 @@ export const LeaderboardPage = () => {
   const { leaderboard, isLoading, error } = useLeaderboard();
 
   return (
-    <div>
-      <h1>Leaderboard</h1>
+    <div className="px-2 py-4">
       {isLoading && <p>Loading leaderboard...</p>}
       {error && (
         <p style={{ color: "red" }}>Error loading leaderboard: {error}</p>
@@ -14,24 +13,24 @@ export const LeaderboardPage = () => {
         <p>No leaderboard data available.</p>
       )}
       {leaderboard && leaderboard.length > 0 && (
-        <table>
+        <table className="w-full">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Player</th>
-              <th>Pred</th>
-              <th>Pts</th>
-              <th>Avg</th>
+              <th className="px-1">#</th>
+              <th className="px-1">Player</th>
+              <th className="px-1">Pred</th>
+              <th className="px-1">Pts</th>
+              <th className="px-1">Avg</th>
             </tr>
           </thead>
           <tbody>
             {leaderboard.map((item) => (
               <tr key={item.player.id}>
-                <td>{item.rank}</td>
-                <td>{item.player.name}</td>
-                <td>{item.matchesPredicted}</td>
-                <td>{item.totalPoints}</td>
-                <td>{item.pointsPerMatch}</td>
+                <td className="px-1 text-center">{item.rank}</td>
+                <td className="px-1">{item.player.name}</td>
+                <td className="px-1 text-center">{item.matchesPredicted}</td>
+                <td className="px-1 text-center">{item.totalPoints}</td>
+                <td className="px-1 text-center">{item.pointsPerMatch}</td>
               </tr>
             ))}
           </tbody>
