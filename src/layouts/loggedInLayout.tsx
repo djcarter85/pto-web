@@ -5,7 +5,6 @@ const Nav = ({ user }: { user: string | undefined }) => {
   return (
     <nav>
       <Link to="/leaderboard">Leaderboard</Link>
-      <Link to="/predictions">Predictions</Link>
       <div>Logged in as: {user}</div>
     </nav>
   );
