@@ -1,5 +1,6 @@
 import { useAuth } from "react-oidc-context";
 import { useNavigate } from "react-router";
+import { Main } from "../components/main";
 
 export const LoginPage = () => {
   const auth = useAuth();
@@ -19,10 +20,12 @@ export const LoginPage = () => {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <p>This is the login page.</p>
-      <button onClick={() => auth.signinRedirect()}>Sign in</button>
-    </div>
+    <Main>
+      <div>
+        <h1>Login</h1>
+        <p>This is the login page.</p>
+        <button onClick={() => auth.signinRedirect()}>Sign in</button>
+      </div>
+    </Main>
   );
 };
