@@ -30,7 +30,7 @@ export const LeaderboardPage = () => {
                 <td className="px-1">{item.player.name}</td>
                 <td className="px-1 text-center">{item.matchesPredicted}</td>
                 <td className="px-1 text-center">{item.totalPoints}</td>
-                <td className="px-1 text-center">{item.pointsPerMatch}</td>
+                <td className="px-1 text-center">{item.pointsPerMatch.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
