@@ -27,10 +27,17 @@ export const LeaderboardPage = () => {
             {leaderboard.map((item) => (
               <tr key={item.player.id}>
                 <td className="px-1 text-center">{item.rank}</td>
-                <td className="px-1">{item.player.name}</td>
-                <td className="px-1 text-center">{item.totalPoints}</td>
+                <td className="px-1 text-lg">{item.player.name}</td>
+                <td className="px-1 text-center">
+                  <span className="text-xl">{item.totalPoints}</span>
+                  <span className="ml-1 text-xs font-semibold text-gray-400 uppercase">
+                    pts
+                  </span>
+                </td>
                 <td className="px-1 text-center">{item.matchesPredicted}</td>
-                <td className="px-1 text-center">{item.pointsPerMatch.toFixed(2)}</td>
+                <td className="px-1 text-center">
+                  {item.pointsPerMatch.toFixed(2)}
+                </td>
               </tr>
             ))}
           </tbody>
