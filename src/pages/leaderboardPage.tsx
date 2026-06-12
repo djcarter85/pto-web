@@ -18,8 +18,8 @@ export const LeaderboardPage = () => {
             <tr>
               <th className="px-1">#</th>
               <th className="px-1">Player</th>
-              <th className="px-1">Pred</th>
               <th className="px-1">Pts</th>
+              <th className="px-1">Pred</th>
               <th className="px-1">Avg</th>
             </tr>
           </thead>
@@ -28,8 +28,8 @@ export const LeaderboardPage = () => {
               <tr key={item.player.id}>
                 <td className="px-1 text-center">{item.rank}</td>
                 <td className="px-1">{item.player.name}</td>
-                <td className="px-1 text-center">{item.matchesPredicted}</td>
                 <td className="px-1 text-center">{item.totalPoints}</td>
+                <td className="px-1 text-center">{item.matchesPredicted}</td>
                 <td className="px-1 text-center">{item.pointsPerMatch.toFixed(2)}</td>
               </tr>
             ))}
