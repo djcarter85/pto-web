@@ -49,9 +49,8 @@ export const LeaderboardPage = () => {
                 </td>
                 <td
                   className={cx(
-                    "border-r-4 px-1 py-1 text-center text-sm text-gray-800",
-                    item.player.isMe && "border-r-blue-500",
-                    !item.player.isMe && "border-r-transparent",
+                    "px-1 py-1 text-center text-sm text-gray-800"
+                    ,
                   )}
                 >
                   {item.pointsPerMatch.toFixed(2)}
