@@ -3,10 +3,12 @@ import { z } from "zod";
 const LeaderboardPlayerSchema = z.object({
   id: z.string(),
   name: z.string(),
+  isMe: z.boolean(),
 });
 
 const LeaderboardEntrySchema = z.object({
   rank: z.number(),
+  rankIsShared: z.boolean(),
   player: LeaderboardPlayerSchema,
   matchesPredicted: z.number(),
   totalPoints: z.number(),

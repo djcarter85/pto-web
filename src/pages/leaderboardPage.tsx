@@ -1,3 +1,4 @@
+import { cx } from "classix";
 import { useLeaderboard } from "../hooks/useLeaderboard";
 
 export const LeaderboardPage = () => {
@@ -15,27 +16,44 @@ export const LeaderboardPage = () => {
       {leaderboard && leaderboard.length > 0 && (
         <table className="w-full">
           <thead>
-            <tr>
-              <th className="px-1">#</th>
-              <th className="px-1">Player</th>
-              <th className="px-1">Pts</th>
-              <th className="px-1">Pred</th>
-              <th className="px-1">Avg</th>
+            <tr className="text-sm tracking-wide text-gray-400 uppercase">
+              <th className="px-1 py-3 font-normal">#</th>
+              <th className="px-1 py-3 font-normal"></th>
+              <th className="px-1 py-3 font-normal">Pts</th>
+              <th className="px-1 py-3 font-normal">Pred</th>
+              <th className="px-1 py-3 font-normal">Avg</th>
             </tr>
           </thead>
           <tbody>
             {leaderboard.map((item) => (
-              <tr key={item.player.id}>
-                <td className="px-1 text-center">{item.rank}</td>
-                <td className="px-1 text-lg">{item.player.name}</td>
-                <td className="px-1 text-center">
-                  <span className="text-xl">{item.totalPoints}</span>
-                  <span className="ml-1 text-xs font-semibold text-gray-400 uppercase">
-                    pts
-                  </span>
+              <tr
+                key={item.player.id}
+                className={cx(item.player.isMe && "bg-gray-100")}
+              >
+                <td
+                  className={cx(
+                    "border-l-4 px-1 py-1 text-center text-sm text-gray-800",
+                    item.player.isMe && "border-l-blue-500",
+                    !item.player.isMe && "border-l-transparent",
+                  )}
+                >
+                  {item.rank}
+                  {item.rankIsShared && <span>=</span>}
                 </td>
-                <td className="px-1 text-center">{item.matchesPredicted}</td>
-                <td className="px-1 text-center">
+                <td className="px-1 py-1 font-medium">{item.player.name}</td>
+                <td className="px-1 py-1 text-center text-xl">
+                  {item.totalPoints}
+                </td>
+                <td className="px-1 py-1 text-center text-sm text-gray-800">
+                  {item.matchesPredicted}
+                </td>
+                <td
+                  className={cx(
+                    "border-r-4 px-1 py-1 text-center text-sm text-gray-800",
+                    item.player.isMe && "border-r-blue-500",
+                    !item.player.isMe && "border-r-transparent",
+                  )}
+                >
                   {item.pointsPerMatch.toFixed(2)}
                 </td>
               </tr>
