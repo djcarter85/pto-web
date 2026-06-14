@@ -5,7 +5,7 @@ export const LeaderboardPage = () => {
   const { leaderboard, isLoading, error } = useLeaderboard();
 
   return (
-    <div className="px-2 py-4">
+    <div className="px-3 py-4">
       {isLoading && <p>Loading leaderboard...</p>}
       {error && (
         <p style={{ color: "red" }}>Error loading leaderboard: {error}</p>
