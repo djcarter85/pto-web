@@ -22,8 +22,8 @@ export const LoginPage = () => {
   return (
     <Main>
       <div className="flex min-h-screen items-center justify-center">
-        <div className="mx-auto flex w-xs flex-col gap-y-4 rounded-xl border border-gray-300 p-6 shadow-md">
-          <p className="text-center text-lg">
+        <div className="mx-2 flex flex-col gap-y-4 rounded-xl border border-gray-300 p-6 shadow-md">
+          <p className="text-center text-lg text-pretty">
             Welcome to PTO, a football predictions game!
           </p>
           <p className="text-center text-sm">You must be logged in to play.</p>

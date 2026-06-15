@@ -19,17 +19,19 @@ const cognitoAuthConfig = {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider {...cognitoAuthConfig}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
+      <div className="mx-auto min-h-screen max-w-md px-3">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
 
-          <Route element={<LoggedInLayout />}>
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-          </Route>
+            <Route element={<LoggedInLayout />}>
+              <Route path="/leaderboard" element={<LeaderboardPage />} />
+            </Route>
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </AuthProvider>
   </StrictMode>,
 );
