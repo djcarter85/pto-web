@@ -8,7 +8,7 @@ export const LeaderboardPage = () => {
     <div className="px-3 py-4">
       {isLoading && <p>Loading leaderboard...</p>}
       {error && (
-        <p style={{ color: "red" }}>Error loading leaderboard: {error}</p>
+        <p className="text-red-500">Error loading leaderboard: {error}</p>
       )}
       {!isLoading && !error && (!leaderboard || leaderboard.length === 0) && (
         <p>No leaderboard data available.</p>
@@ -48,10 +48,7 @@ export const LeaderboardPage = () => {
                   {item.matchesPredicted}
                 </td>
                 <td
-                  className={cx(
-                    "px-1 py-1 text-center text-sm text-gray-800"
-                    ,
-                  )}
+                  className={cx("px-1 py-1 text-center text-sm text-gray-800")}
                 >
                   {item.pointsPerMatch.toFixed(2)}
                 </td>
