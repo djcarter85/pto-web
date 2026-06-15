@@ -41,7 +41,7 @@ export const useLeaderboard = () => {
     return () => {
       cancelled = true;
     };
-  }, [auth.isLoading, auth.isAuthenticated, auth.user?.access_token]);
+  }, [auth.isLoading, auth.isAuthenticated, auth.user?.id_token]);
 
   return { leaderboard, isLoading, error } as const;
 };
