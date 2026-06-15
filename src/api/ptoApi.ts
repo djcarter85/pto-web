@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+const baseUrl = "https://api.pto.football";
+
 const LeaderboardPlayerSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -39,7 +41,7 @@ const parseResponse = async <T>(res: Response, schema: z.ZodType<T>) => {
 };
 
 export const getLeaderboard = async (idToken: string) => {
-  const url = "https://api.pto.football/leaderboardPage";
+  const url = `${baseUrl}/leaderboardPage`;
 
   const res = await fetch(url, {
     method: "GET",
