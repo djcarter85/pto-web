@@ -47,9 +47,7 @@ export const LeaderboardPage = () => {
                 <td className="px-1 py-1 text-center text-sm text-gray-800">
                   {item.matchesPredicted}
                 </td>
-                <td
-                  className={cx("px-1 py-1 text-center text-sm text-gray-800")}
-                >
+                <td className="px-1 py-1 text-center text-sm text-gray-800">
                   {item.pointsPerMatch.toFixed(2)}
                 </td>
               </tr>
