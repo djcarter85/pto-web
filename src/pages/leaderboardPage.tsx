@@ -44,10 +44,10 @@ export const LeaderboardPage = () => {
                 <td className="px-1 py-1 text-right text-xl tabular-nums">
                   {item.totalPoints}
                 </td>
-                <td className="px-1 py-1 text-right text-sm text-gray-800">
+                <td className="px-1 py-1 text-right text-gray-800">
                   {item.matchesPredicted}
                 </td>
-                <td className="px-2 py-1 text-right text-sm text-gray-800">
+                <td className="px-2 py-1 text-right text-gray-800">
                   {item.pointsPerMatch.toFixed(2)}
                 </td>
               </tr>
