@@ -14,14 +14,14 @@ export const LeaderboardPage = () => {
         <p>No leaderboard data available.</p>
       )}
       {leaderboard && leaderboard.length > 0 && (
-        <table className="w-full">
+        <table className="w-full tabular-nums">
           <thead>
             <tr className="text-sm tracking-wide text-gray-400 uppercase">
-              <th className="px-1 py-3 font-normal">#</th>
+              <th className="px-1 py-3 text-right font-normal">#</th>
               <th className="px-1 py-3 font-normal"></th>
-              <th className="px-1 py-3 font-normal">Pts</th>
-              <th className="px-1 py-3 font-normal">Pred</th>
-              <th className="px-1 py-3 font-normal">Avg</th>
+              <th className="px-1 py-3 text-right font-normal">Pts</th>
+              <th className="px-1 py-3 text-right font-normal">Pred</th>
+              <th className="px-2 py-3 text-right font-normal">Avg</th>
             </tr>
           </thead>
           <tbody>
@@ -32,22 +32,22 @@ export const LeaderboardPage = () => {
               >
                 <td
                   className={cx(
-                    "border-l-4 px-1 py-1 text-center text-sm text-gray-800",
+                    "border-l-4 px-1 py-1 text-right text-sm text-gray-800",
                     item.player.isMe && "border-l-blue-500",
                     !item.player.isMe && "border-l-transparent",
                   )}
                 >
-                  {item.rank}
                   {item.rankIsShared && <span>=</span>}
+                  {item.rank}
                 </td>
                 <td className="px-1 py-1 font-medium">{item.player.name}</td>
-                <td className="px-1 py-1 text-center text-xl">
+                <td className="px-1 py-1 text-right text-xl tabular-nums">
                   {item.totalPoints}
                 </td>
-                <td className="px-1 py-1 text-center text-sm text-gray-800">
+                <td className="px-1 py-1 text-right text-sm text-gray-800">
                   {item.matchesPredicted}
                 </td>
-                <td className="px-1 py-1 text-center text-sm text-gray-800">
+                <td className="px-2 py-1 text-right text-sm text-gray-800">
                   {item.pointsPerMatch.toFixed(2)}
                 </td>
               </tr>
