@@ -33,8 +33,8 @@ const MatchTeamRow = ({
     name: string;
     id: number;
   };
-  actual?: number | null;
-  predicted?: number | null;
+  actual?: number;
+  predicted?: number;
   gapAbove?: boolean;
 }) => (
   <div
@@ -53,12 +53,12 @@ const MatchTeamRow = ({
     <div className="truncate">{team.name}</div>
     <ScoreCell
       score={actual}
-      type={actual !== null ? "final" : "missing"}
+      type={actual !== undefined ? "final" : "missing"}
       fallback="?"
     />
     <ScoreCell
       score={predicted}
-      type={predicted !== null ? "predicted" : "missing"}
+      type={predicted !== undefined ? "predicted" : "missing"}
       fallback="-"
     />
   </div>
