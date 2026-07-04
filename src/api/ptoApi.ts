@@ -21,27 +21,36 @@ const LeaderboardResponseSchema = z.object({
   leaderboard: z.array(LeaderboardEntrySchema),
 });
 
+const ResultsPageResponseSchema = z.object({
+  results: z.array(z.object({})),
+});
+
 export type LeaderboardPlayer = z.infer<typeof LeaderboardPlayerSchema>;
 
 export type LeaderboardEntry = z.infer<typeof LeaderboardEntrySchema>;
 
 export type LeaderboardResponse = z.infer<typeof LeaderboardResponseSchema>;
 
-const parseResponse = async <T>(res: Response, schema: z.ZodType<T>) => {
+export type ResultsPageResponse = z.infer<typeof ResultsPageResponseSchema>;
+
+const parseResponse = async <T>(res: Response, schema: z.ZodType<T>, label: string) => {
   const json = await res.json();
   const result = schema.safeParse(json);
 
   if (!result.success) {
-    throw new Error(
-      `Leaderboard response validation failed: ${result.error.message}`,
-    );
+    throw new Error(`${label} response validation failed: ${result.error.message}`);
   }
 
   return result.data;
 };
 
-export const getLeaderboardPage = async (idToken: string) => {
-  const url = `${baseUrl}/leaderboardPage`;
+const fetchPage = async <T>(
+  idToken: string,
+  path: string,
+  schema: z.ZodType<T>,
+  label: string,
+) => {
+  const url = `${baseUrl}${path}`;
 
   const res = await fetch(url, {
     method: "GET",
@@ -56,9 +65,17 @@ export const getLeaderboardPage = async (idToken: string) => {
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     throw new Error(
-      `Leaderboard fetch failed: ${res.status} ${res.statusText}${text ? " - " + text : ""}`,
+      `${label} fetch failed: ${res.status} ${res.statusText}${text ? " - " + text : ""}`,
     );
   }
 
-  return parseResponse(res, LeaderboardResponseSchema);
+  return parseResponse(res, schema, label);
+};
+
+export const getLeaderboardPage = async (idToken: string) => {
+  return fetchPage(idToken, "/leaderboardPage", LeaderboardResponseSchema, "Leaderboard");
+};
+
+export const getResultsPage = async (idToken: string) => {
+  return fetchPage(idToken, "/resultsPage", ResultsPageResponseSchema, "Results");
 };
