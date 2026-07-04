@@ -24,23 +24,33 @@ const ScoreCell = ({
 );
 
 const MatchTeamRow = ({
-  teamName,
+  team,
   actual,
   predicted,
   gapAbove,
 }: {
-  teamName: string;
+  team: {
+    name: string;
+    id: number;
+  };
   actual?: number | null;
   predicted?: number | null;
   gapAbove?: boolean;
 }) => (
   <div
     className={cx(
-      "col-span-3 grid grid-cols-subgrid items-center",
-      gapAbove && "mt-1",
+      "col-span-4 grid grid-cols-subgrid items-center",
+      gapAbove && "mt-2",
     )}
   >
-    <div className="truncate">{teamName}</div>
+    <div className="flex size-7 items-center justify-center overflow-hidden">
+      <img
+        src={`/team-images/logo-${team.id}.svg`}
+        alt={`${team.name} logo`}
+        className="size-7 object-contain"
+      />
+    </div>
+    <div className="truncate">{team.name}</div>
     <ScoreCell
       score={actual}
       type={actual !== null ? "final" : "missing"}
@@ -74,22 +84,22 @@ export const ResultsPage = () => {
               key={r.matchId}
               className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
             >
-              <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] gap-x-2">
-                <div className="col-span-3 grid grid-cols-subgrid items-center">
-                  <div className="col-start-2 text-center text-xs text-gray-700">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] gap-x-2">
+                <div className="col-span-4 grid grid-cols-subgrid items-center">
+                  <div className="col-start-3 text-center text-xs text-gray-700">
                     FT
                   </div>
-                  <div className="col-start-3 text-center text-xs text-gray-700">
+                  <div className="col-start-4 text-center text-xs text-gray-700">
                     Pred.
                   </div>
                 </div>
                 <MatchTeamRow
-                  teamName={r.homeTeam.name}
+                  team={r.homeTeam}
                   actual={r.finalScore?.home}
                   predicted={r.predictedScore?.home}
                 />
                 <MatchTeamRow
-                  teamName={r.awayTeam.name}
+                  team={r.awayTeam}
                   actual={r.finalScore?.away}
                   predicted={r.predictedScore?.away}
                   gapAbove={true}
