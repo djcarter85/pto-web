@@ -17,7 +17,7 @@ export const ResultsPage = () => {
       {data && data.results.length > 0 && (
         <div>
           {data.results.map((r) => (
-            <div>
+            <div key={r.matchId}>
               {r.homeTeam.name} vs {r.awayTeam.name}
             </div>
           ))}

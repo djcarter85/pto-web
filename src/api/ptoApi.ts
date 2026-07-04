@@ -30,6 +30,7 @@ const TeamSchema = z.object({
 const ResultsPageResponseSchema = z.object({
   results: z.array(
     z.object({
+      matchId: z.string(),
       homeTeam: TeamSchema,
       awayTeam: TeamSchema,
     }),
