@@ -1,17 +1,23 @@
 import cx from "classix";
 import { getResultsPage, getUserPlayer } from "../api/ptoApi";
 import { useData } from "../hooks/useData";
-import { Trophy } from "react-bootstrap-icons";
+import { Person, Trophy } from "react-bootstrap-icons";
 
-const TournamentHeader = ({ tournamentName }: { tournamentName: string }) => {
+const Header = ({ text, icon }: { text: string; icon?: React.ReactNode }) => {
   return (
-    <div className="flex flex-row items-center gap-3 px-2 font-semibold">
-      <span className="text-lg">
-        <Trophy />
-      </span>
-      <span className="text-xl">{tournamentName}</span>
+    <div className="flex flex-row items-center gap-3 px-2">
+      <span className="text-lg">{icon}</span>
+      <span className="text-xl">{text}</span>
     </div>
   );
+};
+
+const TournamentHeader = ({ tournamentName }: { tournamentName: string }) => {
+  return <Header text={tournamentName} icon={<Trophy />} />;
+};
+
+const PlayerHeader = ({ playerName }: { playerName: string }) => {
+  return <Header text={playerName} icon={<Person />} />;
 };
 
 const ScoreCell = ({
@@ -94,7 +100,10 @@ export const ResultsPage = () => {
       )}
       {data && data.results.length > 0 && (
         <>
-          <TournamentHeader tournamentName={data.tournament.name} />
+          <div>
+            <TournamentHeader tournamentName={data.tournament.name} />
+            <PlayerHeader playerName={data.player.name} />
+          </div>
           <div className="space-y-3">
             {data.results.map((r) => (
               <div

@@ -41,6 +41,7 @@ const ResultsPageResponseSchema = z.object({
   tournament: z.object({
     name: z.string(),
   }),
+  player: PlayerSchema,
   results: z.array(
     z.object({
       matchId: z.string(),
