@@ -14,7 +14,15 @@ export const ResultsPage = () => {
       {!isLoading && !error && (!data || data.results.length === 0) && (
         <p>No results data available.</p>
       )}
-      {data && data.results.length > 0 && <div>results</div>}
+      {data && data.results.length > 0 && (
+        <div>
+          {data.results.map((r) => (
+            <div>
+              {r.homeTeam.name} vs {r.awayTeam.name}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

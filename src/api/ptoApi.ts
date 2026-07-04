@@ -21,8 +21,19 @@ const LeaderboardResponseSchema = z.object({
   leaderboard: z.array(LeaderboardEntrySchema),
 });
 
+const TeamSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  shortName: z.string(),
+});
+
 const ResultsPageResponseSchema = z.object({
-  results: z.array(z.object({})),
+  results: z.array(
+    z.object({
+      homeTeam: TeamSchema,
+      awayTeam: TeamSchema,
+    }),
+  ),
 });
 
 export type LeaderboardPlayer = z.infer<typeof LeaderboardPlayerSchema>;
