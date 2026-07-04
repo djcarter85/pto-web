@@ -33,12 +33,18 @@ export type LeaderboardResponse = z.infer<typeof LeaderboardResponseSchema>;
 
 export type ResultsPageResponse = z.infer<typeof ResultsPageResponseSchema>;
 
-const parseResponse = async <T>(res: Response, schema: z.ZodType<T>, label: string) => {
+const parseResponse = async <T>(
+  res: Response,
+  schema: z.ZodType<T>,
+  label: string,
+) => {
   const json = await res.json();
   const result = schema.safeParse(json);
 
   if (!result.success) {
-    throw new Error(`${label} response validation failed: ${result.error.message}`);
+    throw new Error(
+      `${label} response validation failed: ${result.error.message}`,
+    );
   }
 
   return result.data;
@@ -73,9 +79,19 @@ const fetchPage = async <T>(
 };
 
 export const getLeaderboardPage = async (idToken: string) => {
-  return fetchPage(idToken, "/leaderboardPage", LeaderboardResponseSchema, "Leaderboard");
+  return fetchPage(
+    idToken,
+    "/leaderboardPage",
+    LeaderboardResponseSchema,
+    "Leaderboard",
+  );
 };
 
-export const getResultsPage = async (idToken: string) => {
-  return fetchPage(idToken, "/resultsPage", ResultsPageResponseSchema, "Results");
+export const getResultsPage = async (idToken: string, playerId: string) => {
+  return fetchPage(
+    idToken,
+    `/resultsPage?tournamentCode=wc2026&playerId=${playerId}`,
+    ResultsPageResponseSchema,
+    "Results",
+  );
 };
