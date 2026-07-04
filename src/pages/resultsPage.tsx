@@ -1,5 +1,5 @@
 import cx from "classix";
-import { getResultsPage } from "../api/ptoApi";
+import { getResultsPage, getUserPlayer } from "../api/ptoApi";
 import { useData } from "../hooks/useData";
 
 const ScoreCell = ({
@@ -64,8 +64,11 @@ const MatchTeamRow = ({
   </div>
 );
 
-const getData = async (idToken: string) =>
-  getResultsPage(idToken, "375ec333-4ff2-4573-917c-f7336a611ff4");
+const getData = async (idToken: string) => {
+  // TODO what if this is null?
+  const userPlayer = await getUserPlayer(idToken);
+  return getResultsPage(idToken, userPlayer.id);
+};
 
 export const ResultsPage = () => {
   const { data, isLoading, error } = useData(getData);

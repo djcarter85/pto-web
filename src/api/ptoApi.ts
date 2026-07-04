@@ -32,6 +32,11 @@ const ScoreSchema = z.object({
   away: z.number(),
 });
 
+const PlayerSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
 const ResultsPageResponseSchema = z.object({
   results: z.array(
     z.object({
@@ -113,4 +118,8 @@ export const getResultsPage = async (idToken: string, playerId: string) => {
     ResultsPageResponseSchema,
     "Results",
   );
+};
+
+export const getUserPlayer = async (idToken: string) => {
+  return fetchPage(idToken, `/userPlayer`, PlayerSchema, "User Player");
 };
