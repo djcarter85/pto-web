@@ -40,7 +40,7 @@ const parseResponse = async <T>(res: Response, schema: z.ZodType<T>) => {
   return result.data;
 };
 
-export const getLeaderboard = async (idToken: string) => {
+export const getLeaderboardPage = async (idToken: string) => {
   const url = `${baseUrl}/leaderboardPage`;
 
   const res = await fetch(url, {

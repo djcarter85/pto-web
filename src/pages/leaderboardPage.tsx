@@ -1,8 +1,8 @@
 import { cx } from "classix";
-import { useLeaderboard } from "../hooks/useLeaderboard";
+import { useLeaderboardPage } from "../hooks/useLeaderboardPage";
 
 export const LeaderboardPage = () => {
-  const { leaderboard, isLoading, error } = useLeaderboard();
+  const { leaderboard, isLoading, error } = useLeaderboardPage();
 
   return (
     <div className="py-4">

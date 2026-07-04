@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "react-oidc-context";
-import { getLeaderboard, type LeaderboardEntry } from "../api/ptoApi";
+import { getLeaderboardPage, type LeaderboardEntry } from "../api/ptoApi";
 
-export const useLeaderboard = () => {
+export const useLeaderboardPage = () => {
   const auth = useAuth();
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[] | null>(
     null,
@@ -27,7 +27,7 @@ export const useLeaderboard = () => {
 
       setIsLoading(true);
       try {
-        const data = await getLeaderboard(auth.user.id_token);
+        const data = await getLeaderboardPage(auth.user.id_token);
         if (!cancelled) setLeaderboard(data.leaderboard);
       } catch (err: any) {
         if (!cancelled) setError(err?.message ?? String(err));
