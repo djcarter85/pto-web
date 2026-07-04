@@ -1,8 +1,9 @@
 import { cx } from "classix";
-import { useLeaderboardPage } from "../hooks/useLeaderboardPage";
+import { getLeaderboardPage } from "../api/ptoApi";
+import { useData } from "../hooks/useData";
 
 export const LeaderboardPage = () => {
-  const { leaderboard, isLoading, error } = useLeaderboardPage();
+  const { data, isLoading, error } = useData(getLeaderboardPage);
 
   return (
     <div className="py-4">
@@ -10,10 +11,10 @@ export const LeaderboardPage = () => {
       {error && (
         <p className="text-red-500">Error loading leaderboard: {error}</p>
       )}
-      {!isLoading && !error && (!leaderboard || leaderboard.length === 0) && (
+      {!isLoading && !error && (!data || data.leaderboard.length === 0) && (
         <p>No leaderboard data available.</p>
       )}
-      {leaderboard && leaderboard.length > 0 && (
+      {data && data.leaderboard.length > 0 && (
         <table className="w-full tabular-nums">
           <thead>
             <tr className="text-sm tracking-wide text-gray-400 uppercase">
@@ -25,7 +26,7 @@ export const LeaderboardPage = () => {
             </tr>
           </thead>
           <tbody>
-            {leaderboard.map((item) => (
+            {data.leaderboard.map((item) => (
               <tr
                 key={item.player.id}
                 className={cx(item.player.isMe && "bg-gray-100")}
