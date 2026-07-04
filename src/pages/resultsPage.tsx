@@ -1,6 +1,18 @@
 import cx from "classix";
 import { getResultsPage, getUserPlayer } from "../api/ptoApi";
 import { useData } from "../hooks/useData";
+import { Trophy } from "react-bootstrap-icons";
+
+const TournamentHeader = ({ tournamentName }: { tournamentName: string }) => {
+  return (
+    <div className="flex flex-row items-center gap-3 px-2 font-semibold">
+      <span className="text-lg">
+        <Trophy />
+      </span>
+      <span className="text-xl">{tournamentName}</span>
+    </div>
+  );
+};
 
 const ScoreCell = ({
   score,
@@ -74,43 +86,46 @@ export const ResultsPage = () => {
   const { data, isLoading, error } = useData(getData);
 
   return (
-    <div className="py-4 tabular-nums">
+    <div className="space-y-4 py-4 tabular-nums">
       {isLoading && <p>Loading results...</p>}{" "}
       {error && <p className="text-red-500">Error loading results: {error}</p>}
       {!isLoading && !error && (!data || data.results.length === 0) && (
         <p>No results data available.</p>
       )}
       {data && data.results.length > 0 && (
-        <div className="space-y-3">
-          {data.results.map((r) => (
-            <div
-              key={r.matchId}
-              className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
-            >
-              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] gap-x-2">
-                <div className="col-span-4 grid grid-cols-subgrid items-center">
-                  <div className="col-start-3 text-center text-xs text-gray-700">
-                    FT
+        <>
+          <TournamentHeader tournamentName={data.tournament.name} />
+          <div className="space-y-3">
+            {data.results.map((r) => (
+              <div
+                key={r.matchId}
+                className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
+              >
+                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] gap-x-2">
+                  <div className="col-span-4 grid grid-cols-subgrid items-center">
+                    <div className="col-start-3 text-center text-xs text-gray-700">
+                      FT
+                    </div>
+                    <div className="col-start-4 text-center text-xs text-gray-700">
+                      Pred.
+                    </div>
                   </div>
-                  <div className="col-start-4 text-center text-xs text-gray-700">
-                    Pred.
-                  </div>
+                  <MatchTeamRow
+                    team={r.homeTeam}
+                    actual={r.finalScore?.home}
+                    predicted={r.predictedScore?.home}
+                  />
+                  <MatchTeamRow
+                    team={r.awayTeam}
+                    actual={r.finalScore?.away}
+                    predicted={r.predictedScore?.away}
+                    gapAbove={true}
+                  />
                 </div>
-                <MatchTeamRow
-                  team={r.homeTeam}
-                  actual={r.finalScore?.home}
-                  predicted={r.predictedScore?.home}
-                />
-                <MatchTeamRow
-                  team={r.awayTeam}
-                  actual={r.finalScore?.away}
-                  predicted={r.predictedScore?.away}
-                  gapAbove={true}
-                />
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
