@@ -112,13 +112,13 @@ export const ResultsPage = () => {
               >
                 <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto_auto] gap-x-2">
                   <div className="col-span-5 grid grid-cols-subgrid items-center">
-                    <div className="col-start-3 text-center text-xs text-gray-700">
+                    <div className="col-start-3 text-center text-xs text-gray-600">
                       FT
                     </div>
-                    <div className="col-start-4 text-center text-xs text-gray-700">
+                    <div className="col-start-4 text-center text-xs text-gray-600">
                       PRED
                     </div>
-                    <div className="col-start-5 text-center text-xs text-gray-700">
+                    <div className="col-start-5 text-center text-xs text-gray-600">
                       PTS
                     </div>
                   </div>
