@@ -116,10 +116,10 @@ export const ResultsPage = () => {
                       FT
                     </div>
                     <div className="col-start-4 text-center text-xs text-gray-700">
-                      Pred.
+                      PRED
                     </div>
                     <div className="col-start-5 text-center text-xs text-gray-700">
-                      Pts
+                      PTS
                     </div>
                   </div>
                   <MatchTeamRow
