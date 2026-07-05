@@ -1,6 +1,7 @@
 import { useAuth } from "react-oidc-context";
 import { Outlet, useNavigate } from "react-router";
 import { Main } from "../components/main";
+import { Nav } from "../components/nav";
 
 export const LoggedInLayout = () => {
   const auth = useAuth();
@@ -12,8 +13,11 @@ export const LoggedInLayout = () => {
   }
 
   return (
-    <Main>
-      <Outlet />
-    </Main>
+    <>
+      <Nav />
+      <Main>
+        <Outlet />
+      </Main>
+    </>
   );
 };
