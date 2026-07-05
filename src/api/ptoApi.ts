@@ -49,6 +49,7 @@ const ResultsPageResponseSchema = z.object({
       awayTeam: TeamSchema,
       finalScore: ScoreSchema.nullable(),
       predictedScore: ScoreSchema.nullable(),
+      points: z.number().nullable(),
     }),
   ),
 });

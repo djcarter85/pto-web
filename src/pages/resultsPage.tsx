@@ -110,13 +110,16 @@ export const ResultsPage = () => {
                 key={r.matchId}
                 className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
               >
-                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] gap-x-2">
-                  <div className="col-span-4 grid grid-cols-subgrid items-center">
+                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto_auto] gap-x-2">
+                  <div className="col-span-5 grid grid-cols-subgrid items-center">
                     <div className="col-start-3 text-center text-xs text-gray-700">
                       FT
                     </div>
                     <div className="col-start-4 text-center text-xs text-gray-700">
                       Pred.
+                    </div>
+                    <div className="col-start-5 text-center text-xs text-gray-700">
+                      Pts
                     </div>
                   </div>
                   <MatchTeamRow
@@ -130,6 +133,17 @@ export const ResultsPage = () => {
                     predicted={r.predictedScore?.away}
                     gapAbove={true}
                   />
+                  <div className="col-start-5 row-span-2 row-start-2 flex items-center justify-center self-stretch">
+                    <div
+                      className={cx(
+                        "rounded-md px-3 py-1 text-center text-2xl tabular-nums",
+                        r.points === null && "bg-gray-200",
+                        r.points !== null && "bg-violet-200",
+                      )}
+                    >
+                      {r.points ?? "?"}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
