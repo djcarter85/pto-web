@@ -49,6 +49,9 @@ const ResultsPageResponseSchema = z.object({
       awayTeam: TeamSchema,
       finalScore: ScoreSchema.nullable(),
       predictedScore: ScoreSchema.nullable(),
+      predictionResult: z
+        .enum(["EXACT_SCORE", "CORRECT_RESULT", "ONE_SCORE_CORRECT", "WRONG"])
+        .nullable(),
       points: z.number().nullable(),
     }),
   ),

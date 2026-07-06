@@ -122,8 +122,11 @@ export const ResultsPage = () => {
                     <div
                       className={cx(
                         "rounded-md px-3 py-1 text-center text-2xl tabular-nums",
-                        r.points === null && "bg-gray-200",
-                        r.points !== null && "bg-violet-200",
+                        r.predictionResult === null && "bg-gray-200",
+                        r.predictionResult === "WRONG" && "bg-red-200",
+                        r.predictionResult === "ONE_SCORE_CORRECT" && "bg-sky-200",
+                        r.predictionResult === "CORRECT_RESULT" && "bg-amber-200",
+                        r.predictionResult === "EXACT_SCORE" && "bg-emerald-200",
                       )}
                     >
                       {r.points ?? "?"}
