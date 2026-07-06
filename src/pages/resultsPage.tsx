@@ -23,20 +23,11 @@ const PlayerHeader = ({ playerName }: { playerName: string }) => {
 const ScoreCell = ({
   score,
   fallback,
-  type,
 }: {
   score?: number | null;
   fallback: string;
-  type: "missing" | "final" | "predicted";
 }) => (
-  <div
-    className={cx(
-      "rounded-md px-3 text-center tabular-nums",
-      type === "missing" && "bg-gray-200",
-      type === "final" && "bg-amber-200",
-      type === "predicted" && "bg-sky-200",
-    )}
-  >
+  <div className="rounded-md px-3 text-center text-lg tabular-nums">
     {score ?? fallback}
   </div>
 );
@@ -69,16 +60,8 @@ const MatchTeamRow = ({
       />
     </div>
     <div className="truncate">{team.name}</div>
-    <ScoreCell
-      score={predicted}
-      type={predicted !== undefined ? "predicted" : "missing"}
-      fallback="-"
-    />
-    <ScoreCell
-      score={actual}
-      type={actual !== undefined ? "final" : "missing"}
-      fallback="?"
-    />
+    <ScoreCell score={predicted} fallback="-" />
+    <ScoreCell score={actual} fallback="?" />
   </div>
 );
 
