@@ -123,7 +123,7 @@ export const ResultsPage = () => {
                       className={cx(
                         "rounded-md px-3 py-1 text-center text-2xl tabular-nums",
                         r.predictionResult === null &&
-                          "border border-gray-300 bg-gray-100 text-gray-950",
+                          "border border-gray-900 bg-gray-100 text-gray-950",
                         r.predictionResult === "WRONG" &&
                           "border border-red-900 bg-red-100 text-red-950",
                         r.predictionResult === "ONE_SCORE_CORRECT" &&
