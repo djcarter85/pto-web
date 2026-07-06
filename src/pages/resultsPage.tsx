@@ -122,11 +122,16 @@ export const ResultsPage = () => {
                     <div
                       className={cx(
                         "rounded-md px-3 py-1 text-center text-2xl tabular-nums",
-                        r.predictionResult === null && "bg-gray-200",
-                        r.predictionResult === "WRONG" && "bg-red-200",
-                        r.predictionResult === "ONE_SCORE_CORRECT" && "bg-sky-200",
-                        r.predictionResult === "CORRECT_RESULT" && "bg-amber-200",
-                        r.predictionResult === "EXACT_SCORE" && "bg-emerald-200",
+                        r.predictionResult === null &&
+                          "border border-gray-300 bg-gray-100 text-gray-950",
+                        r.predictionResult === "WRONG" &&
+                          "border border-red-900 bg-red-100 text-red-950",
+                        r.predictionResult === "ONE_SCORE_CORRECT" &&
+                          "border border-sky-900 bg-sky-100 text-sky-950",
+                        r.predictionResult === "CORRECT_RESULT" &&
+                          "border border-amber-900 bg-amber-100 text-amber-950",
+                        r.predictionResult === "EXACT_SCORE" &&
+                          "border border-emerald-900 bg-emerald-100 text-emerald-950",
                       )}
                     >
                       {r.points ?? "?"}
