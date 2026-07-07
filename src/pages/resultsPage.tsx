@@ -94,7 +94,7 @@ export const ResultsPage = () => {
                 className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
               >
                 <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto_auto] gap-x-2">
-                  <div className="col-span-5 grid grid-cols-subgrid items-center">
+                  <div className="col-span-full grid grid-cols-subgrid items-center">
                     <div className="col-start-3 text-center text-xs text-gray-600">
                       PRED
                     </div>
