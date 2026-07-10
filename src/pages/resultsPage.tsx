@@ -91,7 +91,19 @@ export const ResultsPage = () => {
             {data.results.map((r) => (
               <div
                 key={r.matchId}
-                className="rounded-lg border border-slate-200 px-3 py-2 shadow-sm"
+                className={cx(
+                  "rounded-lg border-l-4 border-slate-200 px-3 py-2 shadow-sm",
+                  r.predictionResult === null &&
+                    "border-l-gray-400 bg-gray-50",
+                  r.predictionResult === "EXACT_SCORE" &&
+                    "border-l-emerald-500 bg-emerald-100",
+                  r.predictionResult === "CORRECT_RESULT" &&
+                    "border-l-amber-500 bg-amber-100",
+                  r.predictionResult === "ONE_SCORE_CORRECT" &&
+                    "border-l-sky-500 bg-sky-100",
+                  r.predictionResult === "WRONG" &&
+                    "border-l-red-500 bg-red-100",
+                )}
               >
                 <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto_auto] gap-x-2">
                   <div className="col-span-full grid grid-cols-subgrid items-center">
@@ -121,17 +133,15 @@ export const ResultsPage = () => {
                   <div className="col-start-5 row-span-2 row-start-2 flex items-center justify-center self-stretch">
                     <div
                       className={cx(
-                        "rounded-md px-3 py-1 text-center text-2xl tabular-nums",
-                        r.predictionResult === null &&
-                          "border border-gray-900 bg-gray-100 text-gray-950",
+                        "text-3xl tabular-nums",
                         r.predictionResult === "WRONG" &&
-                          "border border-red-900 bg-red-100 text-red-950",
+                          "font-semibold text-red-600",
                         r.predictionResult === "ONE_SCORE_CORRECT" &&
-                          "border border-sky-900 bg-sky-100 text-sky-950",
+                          "font-semibold text-sky-600",
                         r.predictionResult === "CORRECT_RESULT" &&
-                          "border border-amber-900 bg-amber-100 text-amber-950",
+                          "font-semibold text-amber-600",
                         r.predictionResult === "EXACT_SCORE" &&
-                          "border border-emerald-900 bg-emerald-100 text-emerald-950",
+                          "font-semibold text-emerald-600",
                       )}
                     >
                       {r.points ?? "?"}
