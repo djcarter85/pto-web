@@ -57,6 +57,18 @@ const ResultsPageResponseSchema = z.object({
   ),
 });
 
+const PredictPageResponseSchema = z.object({
+  matches: z.array(
+    z.object({
+      matchId: z.string(),
+      kickoff: z.iso.datetime(),
+      homeTeam: TeamSchema,
+      awayTeam: TeamSchema,
+      predictedScore: ScoreSchema.nullable(),
+    }),
+  ),
+});
+
 export type LeaderboardPlayer = z.infer<typeof LeaderboardPlayerSchema>;
 
 export type LeaderboardEntry = z.infer<typeof LeaderboardEntrySchema>;
@@ -125,6 +137,15 @@ export const getResultsPage = async (idToken: string, playerId: string) => {
     `/resultsPage?tournamentCode=wc2026&playerId=${playerId}`,
     ResultsPageResponseSchema,
     "Results",
+  );
+};
+
+export const getPredictPage = async (idToken: string, playerId: string) => {
+  return fetchPage(
+    idToken,
+    `/predictPage?tournamentCode=wc2026&playerId=${playerId}`,
+    PredictPageResponseSchema,
+    "Predict",
   );
 };
 

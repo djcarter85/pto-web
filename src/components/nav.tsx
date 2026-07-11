@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { BarChartLine, Trophy } from "react-bootstrap-icons";
+import { BarChartLine, PencilSquare, Trophy } from "react-bootstrap-icons";
 import { Link } from "react-router";
 
 const NavLink = ({
@@ -28,6 +28,7 @@ export const Nav = () => {
     <nav className="fixed right-0 bottom-0 left-0 w-full border-t border-gray-200 bg-gray-50/80 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-md flex-row items-center justify-around">
         <NavLink title="Leaderboard" href="/leaderboard" icon={<Trophy />} />
+        <NavLink title="Predict" href="/predict" icon={<PencilSquare />} />
         <NavLink title="Results" href="/results" icon={<BarChartLine />} />
       </div>
     </nav>

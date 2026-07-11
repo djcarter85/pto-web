@@ -8,6 +8,7 @@ import { LoggedInLayout } from "./layouts/loggedInLayout";
 import { NotFoundPage } from "./pages/notFoundPage";
 import { AuthProvider } from "react-oidc-context";
 import { ResultsPage } from "./pages/resultsPage";
+import { PredictPage } from "./pages/predictPage";
 
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_JwWpg0O8l",
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")!).render(
 
             <Route element={<LoggedInLayout />}>
               <Route path="/leaderboard" element={<LeaderboardPage />} />
+              <Route path="/predict" element={<PredictPage />} />
               <Route path="/results" element={<ResultsPage />} />
             </Route>
 
