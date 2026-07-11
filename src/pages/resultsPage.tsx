@@ -1,5 +1,6 @@
 import cx from "classix";
 import { getResultsPage, getUserPlayer } from "../api/ptoApi";
+import { TeamImage } from "../components/teamImage";
 import { useData } from "../hooks/useData";
 import { Person, Trophy } from "react-bootstrap-icons";
 
@@ -52,13 +53,7 @@ const MatchTeamRow = ({
       gapAbove && "mt-2",
     )}
   >
-    <div className="flex size-7 items-center justify-center overflow-hidden">
-      <img
-        src={`/team-images/logo-${team.id}.svg`}
-        alt={`${team.name} logo`}
-        className="size-7 object-contain"
-      />
-    </div>
+    <TeamImage team={team} />
     <div className="truncate">{team.name}</div>
     <ScoreCell score={predicted} fallback="-" />
     <ScoreCell score={actual} fallback="?" />
