@@ -9,6 +9,7 @@ type MatchPredictionProps = {
     kickoff: string;
     homeTeam: { id: number; name: string };
     awayTeam: { id: number; name: string };
+    predictedScore: { home: number; away: number } | null;
   };
 };
 
@@ -20,7 +21,23 @@ const Team = ({ team }: TeamProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       <TeamImage team={team} />
-      <div>{team.name}</div>
+      <div className="truncate text-sm">{team.name}</div>
+    </div>
+  );
+};
+
+type ScoreInputProps = {
+  value: number | null;
+};
+
+const ScoreInput = ({ value }: ScoreInputProps) => {
+  return (
+    <div>
+      <input
+        type="number"
+        defaultValue={value ?? undefined}
+        className="w-12 rounded border border-gray-300 px-1 py-1 text-center text-lg text-gray-800 tabular-nums"
+      />
     </div>
   );
 };
@@ -30,6 +47,12 @@ const MatchPrediction = ({ match }: MatchPredictionProps) => {
   return (
     <div className="col-span-full grid grid-cols-subgrid">
       <Team team={match.homeTeam} />
+      <ScoreInput
+        value={match.predictedScore !== null ? match.predictedScore.home : null}
+      />
+      <ScoreInput
+        value={match.predictedScore !== null ? match.predictedScore.away : null}
+      />
       <Team team={match.awayTeam} />
       <div className="flex flex-col items-center justify-center tabular-nums">
         <div className="text-xs">{kickoffDate.toFormat("EEE d MMM")}</div>
@@ -61,7 +84,7 @@ export const PredictPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-[auto_auto_auto] gap-y-4 py-4">
+    <div className="grid grid-cols-[1fr_min-content_min-content_1fr_auto] gap-x-1 gap-y-4 py-4">
       {data.matches.map((mp) => (
         <MatchPrediction key={mp.matchId} match={mp} />
       ))}
