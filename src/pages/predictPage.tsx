@@ -31,9 +31,9 @@ const MatchPrediction = ({ match }: MatchPredictionProps) => {
     <div className="col-span-full grid grid-cols-subgrid">
       <Team team={match.homeTeam} />
       <Team team={match.awayTeam} />
-      <div className="flex flex-col items-center justify-center">
-        <div>{kickoffDate.toFormat("EEE d MMM")}</div>
-        <div>{kickoffDate.toFormat("HH:mm")}</div>
+      <div className="flex flex-col items-center justify-center tabular-nums">
+        <div className="text-xs">{kickoffDate.toFormat("EEE d MMM")}</div>
+        <div className="text-sm">{kickoffDate.toFormat("HH:mm")}</div>
       </div>
     </div>
   );
