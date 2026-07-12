@@ -152,3 +152,30 @@ export const getPredictPage = async (idToken: string, playerId: string) => {
 export const getUserPlayer = async (idToken: string) => {
   return fetchPage(idToken, `/userPlayer`, PlayerSchema, "User Player");
 };
+
+export const savePredictions = async (
+  idToken: string,
+  playerId: string,
+  predictions: {
+    matchId: string;
+    predictedScore: { home: number; away: number };
+  }[],
+) => {
+  const url = `${baseUrl}/predictions`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${idToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ playerId, predictions }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `Prediction save failed: ${res.status} ${res.statusText}${text ? " - " + text : ""}`,
+    );
+  }
+};
