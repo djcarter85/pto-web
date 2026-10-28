@@ -60,34 +60,23 @@ testing, and deployment remain open.
 - **Selected — TypeScript with React:** this will provide a broad ecosystem
   and strong support for typed API clients and routing. It will require
   compile-time and type-generation setup.
-- **Rejected — TypeScript with Vue:** this would retain static typing with a
-  different, cohesive component model, but its library choices and patterns
-  would differ from the selected React stack.
-- **Rejected — JavaScript with React:** this would require less setup and no
-  compile-time type handling, but API contract mismatches and many errors
-  would only surface at runtime.
+- **Rejected — TypeScript with Vue.**
+- **Rejected — JavaScript with React.**
 
 ### Styling library
 
 - **Selected — Tailwind CSS:** utility classes will support consistent styling
   and quick iteration. Markup may become class-heavy, and developers will need
   to learn its conventions.
-- **Rejected — CSS Modules and CSS variables:** this would use native CSS and
-  locally scoped styles with minimal dependency overhead, but the project
-  would need to maintain shared conventions and components.
-- **Rejected — component library (for example, MUI):** this would provide
-  accessible, maintained components, but add dependency and customization
-  constraints. The choice of styling library will not determine the visual
-  design.
+- **Rejected — CSS Modules and CSS variables.**
+- **Rejected — component library (for example, MUI).**
 
 ### Page routing
 
 - **Selected — React Router:** it will provide established routing and nested
   layouts. Route types and search-parameter validation will be less
   integrated.
-- **Rejected — TanStack Router:** it would provide strong TypeScript support
-  for route parameters and search state, though it may be less familiar to
-  some teams.
+- **Rejected — TanStack Router.**
 - The routes will keep the informational landing page public and protect
   application pages behind authentication.
 
@@ -118,9 +107,7 @@ testing, and deployment remain open.
   query library such as TanStack Query for caching, loading, and error state.
   This will reduce drift across the large contract; generation may require
   configuration because auth and server metadata are absent.
-- **Rejected — handwritten typed `fetch` wrapper:** this would use fewer tools
-  and provide direct control over requests, but request/response definitions
-  and error handling could drift from OpenAPI.
+- **Rejected — handwritten typed `fetch` wrapper.**
 - Authenticated requests will go through the centralized layer, which will
   supply the base URL and token header and surface API errors; components will
   not construct them independently.
@@ -141,8 +128,7 @@ testing, and deployment remain open.
 - **Selected — ESLint + Prettier:** these tools will provide mature,
   configurable linting and formatting with broad editor support, and will
   require separate configuration.
-- **Rejected — Biome:** this would provide one fast tool for linting and
-  formatting, but with a smaller plugin and customization ecosystem.
+- **Rejected — Biome.**
 - The project will include type-check, lint, format-check, and test scripts.
   Vite will support local SPA development and builds, a supported Node LTS
   version will be used, and environment variables will supply the API URL and
